@@ -1,0 +1,30 @@
+{
+  "name": "feedback-api",
+  "version": "1.0.0",
+  "description": "Quick'n'dirty NodeJS-based API to receive feedback about the quality of the jitsi call",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "devDependencies": {
+    "debug": "~2.6.9"
+  },
+  "dependencies": {
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "morgan": "~1.9.1",
+    "pug": "2.0.0-beta11",
+    "multer": "1.4.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jitsi-HD/feedback-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jitsi-HD/feedback-api/issues"
+  },
+  "homepage": "https://github.com/Jitsi-HD/feedback-api#readme"
+}
