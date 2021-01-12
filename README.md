@@ -39,7 +39,7 @@ WantedBy=multi-user.target
 4. Create the result file and adjust the file permissions accordingly
 `touch /var/lib/jitsi/feedbacks.txt; chmod o+w`
 
-Note: The result file should be stored somewhere outsite of the document root!
+    Note: The result file should be stored somewhere outsite of the document root!
 
 5. Adjust your nginx webserver configuration to relay the REST endpoint at the preferred URL
 ```
