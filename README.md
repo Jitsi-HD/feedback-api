@@ -4,6 +4,8 @@ Jitsi comes with a feature, which allows users to give feedback about their call
 Since we still wanted to visualize our users' satisfaction with our Jitsi instance, we instead wrote a little HTML5 page, which is shown after the user exited a meeting.
 This repository mainly provides a Node.js-based REST-Endpoint to receive the user feedback and writes it as a JSON object into a local file (which then could be processed further - e.g. for visualization in a Grafana Dashboard).
 
+<img src="doc/feedback-form.png" height="350"/> <img src="doc/feedback-success.png" height="200" style="vertical-align:top;" />
+
 So far it is only a kind of quick'n'dirty hack, but feel free to use it if you like it.
 
 ## Installation instructions
