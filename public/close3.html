@@ -50,7 +50,9 @@
       margin: 0 auto;
       width: 50%;
     }
-
+    .subtext {
+      margin-top: 20px;
+    }
     @media only screen and (max-width: 280px) {
 
       body,
@@ -134,6 +136,17 @@
 
 <div class="center" id="step2" style="display: none">
   <h1>Vielen Dank fürs Feedback! 😊</h1>
+  <div class="subtext">
+
+<p>Es gab Probleme bei der Bedienung?  Schaut euch unsere Leitfäden an (
+    <a href="https://unterrichtsmaterialien.hopp-foundation.de/konzepte/jitsi-leitfaden-fuer-lehrer-innen">Lehrende</a>, 
+    sowie <a href="https://unterrichtsmaterialien.hopp-foundation.de/konzepte/jitsi-leitfaden-fuer-schueler-innen">Schüler*innen</a>) 
+</p>
+<p>
+Es gab technische Probleme? Bei vielen Problemen helfen unsere <a href="https://www.hopp-foundation.de/schule/unterstuetzung/videokonferenztool-jitsi/">FAQ</a> weiter.
+</p>
+</div>
+
 </div>
 
 <div class="center" id="error-page" style="display: none">
@@ -188,7 +201,7 @@
           // Set timeout to move to start page after 3 secs
           setTimeout(function () {
             window.location.href = "/"
-          }, 3000);
+          }, 10000);
         }
       })
       .catch(function (error) {
