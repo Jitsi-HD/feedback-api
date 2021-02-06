@@ -161,6 +161,7 @@
   const SKIP_FEEDBACK_COOKIE_NAME = "skipFeedback";
   const SKIP_FEEDBACK_COOKIE_VALUE = "true";
   const SKIP_FEEDBACK_DAYS = 10;
+  const STATS_ID_PARAM_NAME = "callStatsUserName";
 
   // original source: https://www.w3schools.com/js/js_cookies.asp
   function setCookie(cname, cvalue, exdays) {
@@ -229,7 +230,17 @@
 
   function sendFeedback() {
     // fetch statsID
-    let statsID = localStorage.getItem("callStatsUserName");
+    let statsID = localStorage.getItem(STATS_ID_PARAM_NAME);
+
+    // if callStatsUserName is null, check if we got it via GET parameter (usually the case with the smartphone app)
+    if (statsID == null) {
+      const urlParams = new URLSearchParams(window.location.search);
+
+      if (urlParams.has(STATS_ID_PARAM_NAME)) {
+        // read out statsID from GET parameter
+        statsID = urlParams.get(STATS_ID_PARAM_NAME);
+      }
+    }
 
     // build request body
     let request_body = new FormData(form);
