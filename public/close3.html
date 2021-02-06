@@ -244,7 +244,7 @@
 
     // build request body
     let request_body = new FormData(form);
-    request_body.append("callStatsUserName", statsID);
+    request_body.append(STATS_ID_PARAM_NAME, statsID);
 
     fetch("/api/v1.0/feedbacks", {
       method: "POST",
