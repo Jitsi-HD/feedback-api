@@ -132,7 +132,7 @@
       <textarea id="usertext" name="text" placeholder="Falls etwas nicht so gut lief, wäre es super, wenn Du uns hier kurz beschreiben könntest, was (und wann) genau nicht funktioniert hat"></textarea>
     </div>
     <br/>
-    <input type="submit"/>
+    <input id="btn-submit" type="submit"/>
   </form>
 </div>
 
@@ -163,7 +163,13 @@
 
   // User clicked button to send feedback
   form.addEventListener("submit", function (event) {
+    // disable button after clicking to prevent multiple submits of the very same feedback
+    document.getElementById("btn-submit").disabled = true;
+
+    // send user feedback to API
     sendFeedback();
+
+    // prevent fallback submit of form
     event.preventDefault();
   }, false);
 
