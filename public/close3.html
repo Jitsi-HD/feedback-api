@@ -140,6 +140,11 @@
   <h1>Vielen Dank fürs Feedback! 😊</h1>
 </div>
 
+<div class="center" id="skip-feedback">
+  <br/>
+  <input type="button" onclick="skipFeedback()" value="Ich möchte für die nächsten 10 Tage kein Feedback abgeben">
+</div>
+
 <div class="center" id="error-page" style="display: none">
   <h1>Upps, sorry, da ist wohl leider beim Senden was schiefgegangen 😓</h1>
   <br/>
@@ -153,12 +158,61 @@
 
 <script>
   let form = document.querySelector("form");
+  const SKIP_FEEDBACK_COOKIE_NAME = "skipFeedback";
+  const SKIP_FEEDBACK_COOKIE_VALUE = "true";
+  const SKIP_FEEDBACK_DAYS = 10;
+
+  // original source: https://www.w3schools.com/js/js_cookies.asp
+  function setCookie(cname, cvalue, exdays) {
+    let d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    let expires = "expires=" + d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+  }
+
+  // original source: https://www.w3schools.com/js/js_cookies.asp
+  function getCookie(cname) {
+    let name = cname + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
+
+  function shouldSkipFeedback() {
+    // check cookie
+    if (getCookie(SKIP_FEEDBACK_COOKIE_NAME) == SKIP_FEEDBACK_COOKIE_VALUE) {
+      console.log("Skipping feedback due to user preference...");
+      feedbackDone();
+    }
+  }
+
+  function skipFeedback() {
+    // set cookie
+    setCookie(SKIP_FEEDBACK_COOKIE_NAME, SKIP_FEEDBACK_COOKIE_VALUE, SKIP_FEEDBACK_DAYS);
+
+    // replace div content to give user feedback about action
+    document.querySelector("#skip-feedback").innerHTML = "<br/><p>Alles klar, sorry, wir werden dich für die nächsten 10 Tagen nicht mehr nerven 😉</p>";
+  }
 
   function handleFeedbackError(error) {
     document.querySelector("#step1").style = "display: none";
     document.querySelector("#step2").style = "display: none";
     document.querySelector("#error-page").style = "display: block";
     document.querySelector("#error-message").innerText = document.querySelector("#usertext").value + "\n\nFehlercode: " + error;
+  }
+
+  function feedbackDone() {
+    // redirect to main page
+    window.location.href = "/";
   }
 
   // User clicked button to send feedback
@@ -197,7 +251,7 @@
 
           // Set timeout to move to start page after 3 secs
           setTimeout(function () {
-            window.location.href = "/"
+            feedbackDone();
           }, 3000);
         }
       })
@@ -205,6 +259,9 @@
         handleFeedbackError(error);
       });
   }
+
+  // check if we should skip feedback at all
+  shouldSkipFeedback();
 </script>
 </body>
 </html>
