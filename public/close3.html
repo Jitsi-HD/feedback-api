@@ -145,6 +145,10 @@
   <input type="button" onclick="skipFeedback()" value="Ich möchte für die nächsten 10 Tage kein Feedback abgeben">
 </div>
 
+<div class="center" id="ongoing-redirect" style="display: none">
+  <h1>Danke fürs Teilnehmen!</h1>
+</div>
+
 <div class="center" id="error-page" style="display: none">
   <h1>Upps, sorry, da ist wohl leider beim Senden was schiefgegangen 😓</h1>
   <br/>
@@ -162,6 +166,7 @@
   const SKIP_FEEDBACK_COOKIE_VALUE = "true";
   const SKIP_FEEDBACK_DAYS = 10;
   const STATS_ID_PARAM_NAME = "callStatsUserName";
+  const REDIRECT_DELAY_SECONDS = 10;
 
   // original source: https://www.w3schools.com/js/js_cookies.asp
   function setCookie(cname, cvalue, exdays) {
@@ -192,6 +197,12 @@
     // check cookie
     if (getCookie(SKIP_FEEDBACK_COOKIE_NAME) == SKIP_FEEDBACK_COOKIE_VALUE) {
       console.log("Skipping feedback due to user preference...");
+
+      // Hide divs, since redirect could take a bit
+      document.querySelector("#step1").style = "display: none";
+      document.querySelector("#skip-feedback").style = "display: none";
+      document.querySelector("#ongoing-redirect").style = "display: block";
+
       feedbackDone();
     }
   }
@@ -263,7 +274,7 @@
           // Set timeout to move to start page after 3 secs
           setTimeout(function () {
             feedbackDone();
-          }, 3000);
+          }, REDIRECT_DELAY_SECONDS*1000);
         }
       })
       .catch(function (error) {
