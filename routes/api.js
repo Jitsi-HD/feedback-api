@@ -8,6 +8,7 @@ const FEEDBACK_RESULT_FILE = process.env.FEEDBACK_RESULT_FILE || "feedbacks.txt"
 router.post('/feedbacks', function(req, res, next) {
   // Add current timestamp to body object
   req.body._time = Date.now();
+  req.body.user_agent = req.headers['user-agent'];
 
   // Convert to JSON string
   let feedback_data = JSON.stringify(req.body);
