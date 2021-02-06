@@ -4,7 +4,7 @@ var path = require('path');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.send("This is not the page you are looking for");
+  res.redirect("/public/close3.html");
 });
 
 module.exports = router;
