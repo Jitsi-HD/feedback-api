@@ -1,7 +1,7 @@
 version: "3"
 services:
   feedback-api:
-    image: ghcr.io/jitsi-hd/feedback-api:main
+    image: ghcr.io/jitsi-hd/feedback-api:latest
     build:
       context: .
     restart: always
