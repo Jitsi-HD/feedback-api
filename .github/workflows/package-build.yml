@@ -11,8 +11,8 @@ on:
       - v*
 
 env:
-  #IMAGE_NAME: ${{ github.repository }} (TODO: Transform to lowercase)
-  IMAGE_NAME: jitsi-hd/feedback-api
+  #IMAGE_NAME: ${{ github.repository }} (TODO: Strip repo owner)
+  IMAGE_NAME: feedback-api
 
 jobs:
   # Push image to GitHub Packages.
