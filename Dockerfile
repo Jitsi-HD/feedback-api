@@ -14,7 +14,7 @@ USER node
 RUN mkdir /home/node/data
 
 # Bundle app source and fix file permissions
-COPY --chown=node:node . .
+COPY --chown=node:node bin routes views app.js ./
 
 ENV FEEDBACK_RESULT_FILE /home/node/data/feedbacks.txt
 ENV NODE_ENV production
