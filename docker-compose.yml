@@ -1,0 +1,13 @@
+version: "3"
+services:
+  feedback-api:
+    image: ghcr.io/jitsi-hd/feedback-api:main
+    build:
+      context: .
+    restart: always
+    environment:
+      - NODE_ENV
+    volumes:
+      - "./data:/home/node/data"
+    expose:
+      - 3000
