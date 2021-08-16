@@ -11,7 +11,8 @@ on:
       - v*
 
 env:
-  IMAGE_NAME: ${{ github.repository }}
+  #IMAGE_NAME: ${{ github.repository }} (TODO: Transform to lowercase)
+  IMAGE_NAME: jitsi-hd/feedback-api
 
 jobs:
   # Push image to GitHub Packages.
