@@ -4,8 +4,8 @@ FROM node:15-slim
 WORKDIR /home/node/webapp
 
 # Install dependencies
-COPY package*.json ./
-RUN npm ci --only=production
+COPY package*.json /home/node/webapp/
+RUN cd /home/node/webapp && npm ci --only=production
 
 # Use non-root permissions
 USER node
@@ -14,7 +14,7 @@ USER node
 RUN mkdir /home/node/data
 
 # Bundle app source and fix file permissions
-COPY --chown=node:node bin routes views app.js ./
+COPY --chown=node:node bin routes views app.js /home/node/webapp/
 
 ENV FEEDBACK_RESULT_FILE /home/node/data/feedbacks.txt
 ENV NODE_ENV production
